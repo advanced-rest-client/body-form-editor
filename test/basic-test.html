@@ -1,0 +1,72 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+    <script src="../../iron-test-helpers/test-helpers.js"></script>
+    <script src="../../iron-test-helpers/mock-interactions.js"></script>
+
+    <!-- Step 1: import the element to test -->
+    <link rel="import" href="../body-form-editor.html">
+  </head>
+  <body>
+
+    <test-fixture id="basic">
+      <template>
+        <body-form-editor></body-form-editor>
+      </template>
+    </test-fixture>
+
+    <script>
+    /* global fixture, assert, forceXIfStamp */
+    suite('basic', function() {
+      var element;
+      setup(function() {
+        element = fixture('basic');
+      });
+      test('Setting value', function() {
+        element.value = 'a=b&c=d+e';
+        forceXIfStamp(element);
+        assert.lengthOf(element.userParams, 2, 'userParams has length of 2');
+        assert.deepEqual(element.userParams[0], {
+          name: 'a',
+          value: 'b'
+        }, 'userParams[0] is parsed correctly');
+
+        assert.deepEqual(element.userParams[1], {
+          name: 'c',
+          value: 'd e'
+        }, 'userParams[1] is parsed correctly');
+      });
+
+      test('Getting value', function(done) {
+        element.value = 'a=b&c=d+e';
+        forceXIfStamp(element);
+        var input = Polymer.dom(element.root)
+          .querySelector('.user-defined-row .param-value paper-input');
+        input.value = 'test';
+        // element.set('userParams.0.value', 'test');
+        // the change is moved to next microtasks in the element.
+        setTimeout(function() {
+          assert.lengthOf(element.userParams, 2, 'userParams has length of 2');
+          assert.equal(element.value, 'a=test&c=d+e', 'element value set correctly');
+          done();
+        }, 5);
+      });
+    });
+    </script>
+
+  </body>
+</html>
