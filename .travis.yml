@@ -8,15 +8,20 @@ before_script:
 addons:
   sauce_connect: true
 script:
-- ./node_modules/.bin/polymer lint body-form-editor.html
-- ./node_modules/.bin/polymer test --plugin sauce --job-name "body-form-editor:${TRAVIS_BRANCH}" --build-number=${TRAVIS_BUILD_NUMBER}
+- "./node_modules/.bin/polymer lint body-form-editor.html"
+- ./node_modules/.bin/polymer test --plugin sauce --job-name "body-form-editor:${TRAVIS_BRANCH}"
+  --build-number=${TRAVIS_BUILD_NUMBER}
 cache:
   directories:
   - bower_components
   - node_modules
 branches:
   only:
-    - stage
-    - develop
+  - stage
+  - develop
 after_success:
-  - node tasks/ci.js
+- node tasks/ci.js
+env:
+  global:
+  - secure: 4lswNF38gG0mEGFL7gtbX8tq8RfWV/wlpbWQgqOwICqilf/ZhRMs4oyIw4Xvp5Px/zAMYxJCeUSlpFTOJ8iPl6Zc578cRFeF5j/AVBziuwM4vf7attApyD7qqrCRMDiXCyHgfv1LHd8n+UBjZ/K2SANxgMPIBJyc54zNLAOXH0ueXJSk1JvINnCZ3w94vnXei17g731GRTXGKiqhuffx72CjD1RNpkHVHl6yo/l3m3LIw/pMUhwaj29S8N3eIN8ijt0OeAc5WEGn0LPWcRqoZNp206PgI7pihNRYxtS+LBBTfqHD9dsF8hj4GFFhzowLVDsRwjyhSGcGfn6va/tw/6P+aQ63LbqraZs98Ga298DDjyC1eMZAmpF3HwAEXbCLEtK4QEwKBNp02ScanJdCr2BhIs0YRMqcV8hIXqxY8yl1ppzzYU5Zyy3l5DDqpv3T7jfgDyCniRcYalwEo0tftDdkXYCcH4jyBQniKbVdjlrRpu3Wp5JO4blyTB1spFSRdJU+D2nbFOud0udGt9SDN/X5Bfsf83Af3ezyVwcfsqsCwoiVCHlv0a7DzNcV+IntZ/CjYTvjZ2bxw3Qxa/eKwrOX+yhiw3KFJrjhCvV95v3lJv2I5dzJry8Uz8qBN7uznE95yhfHGPo5L5ZyC7pTOQVUG2ODaX27TGrTlsC8lrY=
+  - secure: WHOiM9ZT4aivlPlHmsWYlE+KLzvGym/GxnG0FFKm67f9GnyK3V1AiGirVOtylYgDiCZYhJgqbsHRvjXvQtKY/JWOzuq4hBCQ6fcSdE+1ePN3YTd2Mtjz7/cLPhPmpqZObHyx70Cm7qlk+Dce9aCKhHKWJeJXVYe5OmqgrkhCNzfqmoKybCu9VGNKypRe1gnV25pbkLDN3rdTTbPMUxJH9ZpqSwNG/yE4r8RQLZGsXhsV8YsOcLbhTMyImz4s6X45eQYXtqgoDip72BqjP/0/VUiVMutOrqNUZ0j4YEzepqbxFYv8FOBBf5LGgQtYP79gwI/M538Q3FMD/mmSL26fTMA6tDkxMLpYE4hZN+t75dOJeMHMy3I0RiBgtsOyPHvUoG9BNNFrSWRoCA4ScO3J/Q1MQTasRdaxHigB2ZuH21XAgPIkb4CyNOAYWyo8ESSb1wuJWs2t0HDcpq04/d/D1zcqDT6XW96h+eTWFDbTEP2DqTZgtGERH1HESp8cyjlP3tjh/pxgiGYKGiOiNgwif1cU3WUFTsWWfkaX5Y+7TeYNTW/nWjYYa0NRtDYscaJdwE6NeieZGaeYS6pb00kFS+QOogUFjvQc0QjFTXdWEBUOeGQA3LzMscm0uXjnaAEtKoOUX3c/wM+UOrnlrsTNDDKP8Z90ll/7X2oolFhbm7g=
