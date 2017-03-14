@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/advanced-rest-client/body-form-editor.svg?branch=master)](https://travis-ci.org/advanced-rest-client/body-form-editor)  
+[![Build Status](https://travis-ci.org/advanced-rest-client/body-form-editor.svg?branch=stage)](https://travis-ci.org/advanced-rest-client/body-form-editor)  
 
 # body-form-editor
 
