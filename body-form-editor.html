@@ -270,7 +270,7 @@ Additionally when the `narrow` attribute is set then the form will be displayed 
       return !!(itemEnum && itemEnum.length);
     },
     // Computes input type attribute based on item's type
-    _computeInputType(itemType) {
+    _computeInputType: function(itemType) {
       if (!itemType || itemType === 'text') {
         return 'text';
       }
